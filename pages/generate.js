@@ -26,7 +26,7 @@ export default function Home() {
 
     const body = {
       prompt: e.target.prompt.value,
-      model: e.target.model-code.value
+      version: e.target.version.value
     };
 
     const response = await fetch("/api/predictions", {
@@ -74,14 +74,14 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Dreambooth models photo generation - powered by &amp; Replicate and Vercel</title> (sponsored by <a href='promptloop.com'>Promptloop</a>)
+        <title>Dreambooth models photo generation - powered by &amp; Replicate and Vercel</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
       <main className="container mx-auto p-5">
         {error && <div>{error}</div>}
 
-        <div className="max-w-[512px] mx-auto">
+        <div className="max-w-[512px] mx-auto py-10">
           <PromptForm onSubmit={handleSubmit} />
 
           <div className="text-center">
@@ -96,12 +96,6 @@ export default function Home() {
             )}
 
             <Download predictions={predictions} />
-            <Link href="https://replicate.com/stability-ai/stable-diffusion">
-              <a target="_blank" className="lil-button">
-                <RocketIcon className="icon" />
-                Run Model
-              </a>
-            </Link>
             <Link href="https://promptloop.com">
               <a
                 className="lil-button"

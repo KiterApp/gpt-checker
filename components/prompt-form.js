@@ -1,14 +1,8 @@
 import { useState } from "react";
 
 const samplePrompts = [
-  "a gentleman otter in a 19th century portrait",
-  "bowl of ramen in the style of a comic book",
-  "flower field drawn by Jean-Jacques Sempé",
-  "illustration of a taxi cab in the style of r crumb",
-  "multicolor hyperspace",
-  "painting of fruit on a table in the style of Raimonds Staprans",
-  "pencil sketch of robots playing poker",
-  "photo of an astronaut riding a horse",
+  "Mad Max, Oscar nominated, intense, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, 8k",
+  "Disney Pixar, Award winning, intense, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, 8k",
 ];
 import sample from "lodash/sample";
 
@@ -21,7 +15,7 @@ export default function PromptForm(props) {
       onSubmit={props.onSubmit}
       className="py-5 animate-in fade-in duration-700"
     >
-      <div className="flex max-w-[512px]">
+      <div className="flex max-w-[512px] grid grid-cols-1 gap-5">
         <input
           type="text"
           defaultValue={prompt}
@@ -34,7 +28,7 @@ export default function PromptForm(props) {
           type="text"
           defaultValue={modelCode}
           onChange={(e) => setModelCode(e.target.value)}
-          name="model-code"
+          name="version"
           placeholder="Enter Model Code..."
           className="block w-full flex-grow rounded-l-md"
         />

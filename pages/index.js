@@ -10,22 +10,16 @@ export default function About() {
       </Head>
       {/* <h1 className="text-center text-7xl pb-3">🎨</h1> */}
       <p className="pb-5 text-lg">
-        <strong>Dreambooth</strong> is a process where missing parts of an
+        <strong>Peter's Dreambooth</strong> is a process where missing parts of an
         artwork are filled in to present a complete image. This{" "}
         <a className="underline" href="https://dreambooth.github.io/">
           open-source model
         </a>{" "}
         is trained on individuals to create avatars and portraits. Use password for access.
       </p>
-      <p>
+      <p className="pb-5 text-lg">
         Want in? Email peter (at) promptloop.com with 5-10 pictures of your face in various profiles.
       </p>
-
-      <Link href="/generate">
-        <p>
-          Take me there
-        </p>
-      </Link>
 
       {/* <ol className="list-decimal pl-5">
         <li className="mb-2">
@@ -41,9 +35,9 @@ export default function About() {
         </li>
       </ol> */}
 
-      <Link href="/paint">
+      <Link href="/generate">
         <a className="py-3 block text-center bg-black text-white rounded-md mt-10">
-          Start painting
+          Enter
         </a>
       </Link>
     </div>

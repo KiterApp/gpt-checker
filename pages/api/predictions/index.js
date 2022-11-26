@@ -12,12 +12,15 @@ export default async function handler(req, res) {
     req.body.mask = addBackgroundToPNG(req.body.mask);
   }
 
+  const prompt = `a pbm person, ${req.body.prompt}"`
+
   const body = JSON.stringify({
     // Pinned to a specific version of Stable Diffusion, fetched from:
     // https://replicate.com/stability-ai/stable-diffusion
-    // version: "be04660a5b93ef2aff61e3668dedb4cbeb14941e62a3fd5998364a32d613e35e",
-    input: req.body,
+    version: req.body.version,
+    input: {prompt: prompt},
   });
+  console.log(body,req.body.version);
 
   const response = await fetch(`${API_HOST}/v1/predictions`, {
     method: "POST",
@@ -30,6 +33,7 @@ export default async function handler(req, res) {
 
   if (response.status !== 201) {
     let error = await response.json();
+    console.log(error)
     res.statusCode = 500;
     res.end(JSON.stringify({ detail: error.detail }));
     return;
