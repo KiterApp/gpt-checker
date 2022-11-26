@@ -75,7 +75,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Dreambooth models photo generation - powered by &amp; Replicate and Vercel</title>
+        <title>Peter&apos;s Dreambooth </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
