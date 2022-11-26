@@ -15,7 +15,7 @@ export default function About() {
         <a className="underline" href="https://dreambooth.github.io/">
           open-source model
         </a>{" "}
-        is trained on individuals to create avatars and portraits. Use password for access.
+        is trained on individuals to create avatars and portraits.
       </p>
       <p className="pb-5 text-lg">
         Want in? Email peter (at) promptloop.com with 5-10 pictures of your face in various profiles.
