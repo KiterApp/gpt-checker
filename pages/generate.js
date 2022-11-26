@@ -97,9 +97,14 @@ export default function Home() {
             )}
 
             <Download predictions={predictions} />
+            <p
+              className="text-sm text-gray-500"
+            >
+              Need a model? Email 5-10 high quality photos of your profile (just of you) to peter at promptloop dot com.
+            </p>
             <Link href="https://promptloop.com">
               <a
-                className="lil-button"
+                className="lil-button py-10"
                 target="_blank"
                 rel="noopener noreferrer"
               >
