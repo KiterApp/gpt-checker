@@ -5,12 +5,12 @@ export default function About() {
   return (
     <div className="max-w-[512px] mx-auto p-10 bg-white rounded-lg">
       <Head>
-        <title>Peter's Dreambooth Studio</title>
+        <title>Peter&apos;s Dreambooth Studio</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       {/* <h1 className="text-center text-7xl pb-3">🎨</h1> */}
       <p className="pb-5 text-lg">
-        <strong>Peter's Dreambooth</strong> is a process where missing parts of an
+        <strong>Peter&apos;s Dreambooth</strong> is a process where missing parts of an
         artwork are filled in to present a complete image. This{" "}
         <a className="underline" href="https://dreambooth.github.io/">
           open-source model

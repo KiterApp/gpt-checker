@@ -15,6 +15,7 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [maskImage, setMaskImage] = useState(null);
   const [userUploadedImage, setUserUploadedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,6 +109,14 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        {/* Loading  */}
+        {loading && (
+          <div className="flex justify-center items-center h-screen">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900">
+              Loading....
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
