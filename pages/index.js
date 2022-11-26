@@ -10,29 +10,21 @@ export default function About() {
       </Head>
       {/* <h1 className="text-center text-7xl pb-3">🎨</h1> */}
       <p className="pb-5 text-lg">
-        <strong>Inpainting</strong> is a process where missing parts of an
+        <strong>Dreambooth</strong> is a process where missing parts of an
         artwork are filled in to present a complete image. This{" "}
-        <a className="underline" href="https://github.com/zeke/inpainter">
-          open-source demo
+        <a className="underline" href="https://dreambooth.github.io/">
+          open-source model
         </a>{" "}
-        uses the{" "}
-        <a
-          className="underline"
-          href="https://replicate.com/stability-ai/stable-diffusion"
-        >
-          Stable Diffusion
-        </a>{" "}
-        machine learning model and{" "}
-        <a className="underline" href="https://replicate.com">
-          Replicate&apos;s API
-        </a>{" "}
-        to inpaint images right in your browser.
+        is trained on individuals to create avatars and portraits. Use password for access.
+      </p>
+      <p>
+        Want in? Email peter (at) promptloop.com with 5-10 pictures of your face in various profiles.
       </p>
 
-      <Link href="/paint">
-        <video autoPlay loop muted playsInline clasName="w-full cursor-pointer">
-          <source src="/cherries-oranges-bananas.mp4" />
-        </video>
+      <Link href="/generate">
+        <p>
+          Take me there
+        </p>
       </Link>
 
       {/* <ol className="list-decimal pl-5">

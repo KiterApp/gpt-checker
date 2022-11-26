@@ -14,7 +14,7 @@ import sample from "lodash/sample";
 
 export default function PromptForm(props) {
   const [prompt] = useState(sample(samplePrompts));
-  const [image, setImage] = useState(null);
+  const [modelCode, setModelCode] = useState(null);
 
   return (
     <form
@@ -27,6 +27,15 @@ export default function PromptForm(props) {
           defaultValue={prompt}
           name="prompt"
           placeholder="Enter a prompt..."
+          className="block w-full flex-grow rounded-l-md"
+        />
+
+        <input
+          type="text"
+          defaultValue={modelCode}
+          onChange={(e) => setModelCode(e.target.value)}
+          name="model-code"
+          placeholder="Enter Model Code..."
           className="block w-full flex-grow rounded-l-md"
         />
 
