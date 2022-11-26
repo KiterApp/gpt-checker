@@ -41,11 +41,6 @@ export default function PromptForm(props) {
         >
           Generate
         </button>
-        {loading && (
-          <p className="text-center text-sm py-10">
-            Loading...
-          </p>
-        )}
       </div>
     </form>
   );

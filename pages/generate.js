@@ -19,6 +19,7 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const prevPrediction = predictions[predictions.length - 1];
     const prevPredictionOutput = prevPrediction?.output
@@ -38,6 +39,7 @@ export default function Home() {
       body: JSON.stringify(body),
     });
     const prediction = await response.json();
+    setLoading(false);
 
     if (response.status !== 201) {
       setError(prediction.detail);
