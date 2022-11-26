@@ -43,7 +43,6 @@ export default function Home() {
 
     if (response.status !== 201) {
       setError(prediction.detail);
-      setLoading(false);
       return;
     }
     setPredictions(predictions.concat([prediction]));
@@ -57,11 +56,9 @@ export default function Home() {
       prediction = await response.json();
       if (response.status !== 200) {
         setError(prediction.detail);
-        setLoading(false);
         return;
       }
       setPredictions(predictions.concat([prediction]));
-      setLoading(false);
 
       if (prediction.status === "succeeded") {
         setUserUploadedImage(null);
@@ -71,6 +68,7 @@ export default function Home() {
 
   const startOver = async (e) => {
     e.preventDefault();
+    setLoading(false);
     setPredictions([]);
     setError(null);
     setMaskImage(null);
@@ -88,6 +86,11 @@ export default function Home() {
         {error && <div>{error}</div>}
 
         <div className="max-w-[512px] mx-auto py-10">
+          <h1
+            className="text-center flex text-xl text-gray-600"
+          >
+            <RocketIcon /> {' - '}The Dreambooth
+          </h1>
           <PromptForm onSubmit={handleSubmit} />
 
           <div className="text-center">
@@ -104,15 +107,17 @@ export default function Home() {
             <Download predictions={predictions} />
             {!loading ? (
               <p
-                className="text-sm text-gray-500"
+                className="text-sm text-gray-500 pb-10"
               >
                 Need a model? Email 5-10 high quality photos of your profile (just of you) to peter at promptloop dot com.
               </p>
             ) : (
               <div className="flex justify-center items-center text-sm text-gray-500">
-                <p>
-                  Loading....  (takes around 30 seconds)
-                </p>
+                {(!predictions.length > 0 &&
+                  <p>
+                    ✨ Generating your image....  (takes around 30 seconds)
+                  </p>
+                )}
               </div>
             )}
             <Link href="https://promptloop.com">

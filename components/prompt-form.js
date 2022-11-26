@@ -17,13 +17,22 @@ export default function PromptForm(props) {
       className="py-5 animate-in fade-in duration-700"
     >
       <div className="flex max-w-[512px] grid grid-cols-1 gap-5">
-        <input
+        <div>
+        <p
+          className="text-sm text-gray-500 pb-2"
+        >
+          Describe the image you want, these examples are a good place to start.
+        </p>
+        <textarea
           type="text"
           defaultValue={prompt}
           name="prompt"
           placeholder="Enter a prompt..."
-          className="block w-full flex-grow rounded-l-md"
+          className="block w-full flex-grow rounded-l-md p-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          // three lines
+          rows="5"
         />
+        </div>
 
         <input
           type="text"
