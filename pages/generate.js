@@ -19,6 +19,7 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("submitting");
     setLoading(true);
 
     const prevPrediction = predictions[predictions.length - 1];
@@ -39,10 +40,10 @@ export default function Home() {
       body: JSON.stringify(body),
     });
     const prediction = await response.json();
-    setLoading(false);
 
     if (response.status !== 201) {
       setError(prediction.detail);
+      setLoading(false);
       return;
     }
     setPredictions(predictions.concat([prediction]));
@@ -56,9 +57,11 @@ export default function Home() {
       prediction = await response.json();
       if (response.status !== 200) {
         setError(prediction.detail);
+        setLoading(false);
         return;
       }
       setPredictions(predictions.concat([prediction]));
+      setLoading(false);
 
       if (prediction.status === "succeeded") {
         setUserUploadedImage(null);
@@ -77,7 +80,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Peter&apos;s Dreambooth </title>
+        <title>Peter&apos;s Dreambooth <RocketIcon /></title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
@@ -99,11 +102,19 @@ export default function Home() {
             )}
 
             <Download predictions={predictions} />
-            <p
-              className="text-sm text-gray-500"
-            >
-              Need a model? Email 5-10 high quality photos of your profile (just of you) to peter at promptloop dot com.
-            </p>
+            {!loading ? (
+              <p
+                className="text-sm text-gray-500"
+              >
+                Need a model? Email 5-10 high quality photos of your profile (just of you) to peter at promptloop dot com.
+              </p>
+            ) : (
+              <div className="flex justify-center items-center text-sm text-gray-500">
+                <p>
+                  Loading....  (takes around 90 seconds)
+                </p>
+              </div>
+            )}
             <Link href="https://promptloop.com">
               <a
                 className="lil-button py-10"
@@ -117,13 +128,6 @@ export default function Home() {
           </div>
         </div>
         {/* Loading  */}
-        {loading && (
-          <div className="flex justify-center items-center h-screen text-sm text-gray-500">
-            <p>
-              Loading....  (takes around 90 seconds)
-            </p>
-          </div>
-        )}
       </main>
     </div>
   );
