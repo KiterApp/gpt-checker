@@ -9,6 +9,7 @@ import sample from "lodash/sample";
 export default function PromptForm(props) {
   const [prompt] = useState(sample(samplePrompts));
   const [modelCode, setModelCode] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   return (
     <form
@@ -39,6 +40,11 @@ export default function PromptForm(props) {
         >
           Generate
         </button>
+        {loading && (
+          <p className="text-center text-sm py-10">
+            Loading...
+          </p>
+        )}
       </div>
     </form>
   );
