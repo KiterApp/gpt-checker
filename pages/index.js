@@ -10,8 +10,7 @@ export default function About() {
       </Head>
       {/* <h1 className="text-center text-7xl pb-3">🎨</h1> */}
       <p className="pb-5 text-lg">
-        <strong>Peter&apos;s Dreambooth</strong> is a process where missing parts of an
-        artwork are filled in to present a complete image. This{" "}
+        <strong>Peter&apos;s Dreambooth</strong>  Using this{" "}
         <a className="underline" href="https://dreambooth.github.io/">
           open-source model
         </a>{" "}
