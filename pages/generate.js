@@ -111,7 +111,7 @@ export default function Home() {
             ) : (
               <div className="flex justify-center items-center text-sm text-gray-500">
                 <p>
-                  Loading....  (takes around 90 seconds)
+                  Loading....  (takes around 30 seconds)
                 </p>
               </div>
             )}
