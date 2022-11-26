@@ -19,6 +19,9 @@ export default async function handler(req, res) {
     // https://replicate.com/stability-ai/stable-diffusion
     version: req.body.version,
     input: {prompt: prompt},
+    width: 256,
+    height: 256,
+    num_outputs: 4,
   });
   console.log(body,req.body.version);
 
