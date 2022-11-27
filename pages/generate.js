@@ -115,7 +115,7 @@ export default function Home() {
               </p>
             ) : (
               <div className="flex justify-center items-center text-sm text-gray-500">
-                {(!predictions.length > 0 && !loading &&
+                {(!predictions.length > 0 &&
                   <p>
                     ✨ Generating your image....  (takes around 30 seconds)
                   </p>
