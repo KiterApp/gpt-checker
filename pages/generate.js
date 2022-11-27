@@ -7,6 +7,7 @@ import Download from "components/download";
 import { XCircle as StartOverIcon } from "lucide-react";
 import { Code as CodeIcon } from "lucide-react";
 import { Rocket as RocketIcon } from "lucide-react";
+import Cookies from "js-cookie";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -21,6 +22,7 @@ export default function Home() {
     e.preventDefault();
     console.log("submitting");
     setLoading(true);
+    Cookies.set("model", e.target.version.value);
 
     const prevPrediction = predictions[predictions.length - 1];
     const prevPredictionOutput = prevPrediction?.output

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 const samplePrompts = [
   "Mad Max, Oscar nominated, intense, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, 8k",
@@ -10,6 +11,8 @@ export default function PromptForm(props) {
   const [prompt] = useState(sample(samplePrompts));
   const [modelCode, setModelCode] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const modelCookie = Cookies.get("model");
 
   return (
     <form
@@ -36,7 +39,7 @@ export default function PromptForm(props) {
 
         <input
           type="text"
-          defaultValue={modelCode}
+          defaultValue={modelCookie || modelCode}
           onChange={(e) => setModelCode(e.target.value)}
           name="version"
           placeholder="Enter Model Code..."
