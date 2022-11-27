@@ -78,7 +78,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Peter&apos;s Dreambooth <RocketIcon /></title>
+        <title>Peter&apos;s Dreambooth - use your code</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
