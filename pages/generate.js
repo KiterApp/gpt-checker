@@ -93,13 +93,13 @@ export default function Home() {
           </h1>
           <PromptForm onSubmit={handleSubmit} />
 
-          <div className="text-center">
+          <div className="text-center text-2xl">
             {((predictions.length > 0 &&
               predictions[predictions.length - 1].output) ||
               maskImage ||
               userUploadedImage) && (
               <button className="lil-button" onClick={startOver}>
-                <StartOverIcon className="icon" />
+                <StartOverIcon className="icon text-2xl" />
                 Start over
               </button>
             )}
