@@ -114,10 +114,10 @@ export default function Home() {
                 Need a model? Email 5-10 high quality photos of your profile (just of you) to peter at promptloop dot com.
               </p>
             ) : (
-              <div className="flex justify-center items-center text-sm text-gray-500">
+              <div className="flex justify-center items-center text-md text-gray-500">
                 {(!predictions.length > 1 &&
                   <p>
-                    ✨ Generating your image....  (takes around 30 seconds)
+                    ✨ Loading model... (Takes 2-3 minutes then each image loads in 10-20 seconds)
                   </p>
                 )}
               </div>
