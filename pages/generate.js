@@ -91,7 +91,7 @@ export default function Home() {
           <h1
             className="text-center flex text-xl text-gray-600"
           >
-            <RocketIcon /> {' - '}The Dreambooth
+            <RocketIcon /> {' - '}The Dreambooth {predictions.length}
           </h1>
           <PromptForm onSubmit={handleSubmit} />
 
@@ -115,7 +115,7 @@ export default function Home() {
               </p>
             ) : (
               <div className="flex justify-center items-center text-sm text-gray-500">
-                {(!predictions.length > 0 &&
+                {(!predictions.length > 1 &&
                   <p>
                     ✨ Generating your image....  (takes around 30 seconds)
                   </p>
@@ -124,7 +124,7 @@ export default function Home() {
             )}
             <Link href="https://promptloop.com">
               <a
-                className="lil-button py-10"
+                className="lil-button py-10 pt-20"
                 target="_blank"
                 rel="noopener noreferrer"
               >

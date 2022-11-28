@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 const samplePrompts = [
   "Mad Max, Oscar nominated, intense, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, 8k",
   "Disney Pixar, Award winning, intense, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, 8k",
+  "mdjrny-v4 style portrait of Shaman, Indian Headdress, wild face paint, intricate, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, 8k",
 ];
 import sample from "lodash/sample";
 
@@ -24,7 +25,7 @@ export default function PromptForm(props) {
         <p
           className="text-sm text-gray-500 pb-2"
         >
-          Describe the image you want, these examples are a good place to start.
+          Description (prompt) for the image, include all the detail like these examples for best results:
         </p>
         <textarea
           type="text"

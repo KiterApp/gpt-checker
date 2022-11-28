@@ -12,7 +12,7 @@ export default function Download(props) {
 
   return (
     <Link href={lastImage}>
-      <a className="lil-button text-2xl" target="_blank" rel="noopener noreferrer">
+      <a className="lil-button text-2xl flex " target="_blank" rel="noopener noreferrer">
         <DownloadIcon className="icon" />
         Download
       </a>
