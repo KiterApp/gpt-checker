@@ -5,6 +5,7 @@ const samplePrompts = [
   "Mad Max, Oscar nominated, intense, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, 8k",
   "Disney Pixar, Award winning, intense, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, 8k",
   "mdjrny-v4 style portrait of Shaman, Indian Headdress, wild face paint, intricate, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, 8k",
+  "mdjrny-v4 style portrait, triumph, highly detailed, digital painting, artstation, hyper-detail, smooth, sharp focus, illustration, oil painting by JMW Turner, 8k",
 ];
 import sample from "lodash/sample";
 
