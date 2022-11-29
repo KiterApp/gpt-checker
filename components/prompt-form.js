@@ -12,7 +12,6 @@ import sample from "lodash/sample";
 export default function PromptForm(props) {
   const [prompt] = useState(sample(samplePrompts));
   const [modelCode, setModelCode] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const modelCookie = Cookies.get("model");
 
@@ -51,9 +50,8 @@ export default function PromptForm(props) {
         <button
           className="bg-black text-white rounded-md py-2 text-small inline-block px-3 flex-none"
           type="submit"
-          onClick={() => setLoading(true)}
         >
-          Generate
+          {props.modelLoaded ? "Generate" : "Load Model (can take 2-3 minutes)"}
         </button>
       </div>
     </form>

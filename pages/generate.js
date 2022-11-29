@@ -77,6 +77,8 @@ export default function Home() {
     setUserUploadedImage(null);
   };
 
+  const imageAvailable = predictions[predictions.length - 1]?.output ? true : false;
+
   return (
     <div>
       <Head>
@@ -91,9 +93,12 @@ export default function Home() {
           <h1
             className="text-center flex text-xl text-gray-600"
           >
-            <RocketIcon /> {' - '}The Dreambooth {predictions.length}
+            <RocketIcon /> {' - '}The Dreambooth
           </h1>
-          <PromptForm onSubmit={handleSubmit} />
+          <PromptForm
+            onSubmit={handleSubmit}
+            modelLoaded={predictions.length > 0}
+          />
 
           <div className="text-center text-2xl">
             {((predictions.length > 0 &&
@@ -115,9 +120,9 @@ export default function Home() {
               </p>
             ) : (
               <div className="flex justify-center items-center text-md text-gray-500">
-                {(!predictions.length > 1 &&
+                {(!imageAvailable &&
                   <p>
-                    ✨ Loading model... (Takes 2-3 minutes then each image loads in 10-20 seconds)
+                    ✨ Loading model...
                   </p>
                 )}
               </div>
