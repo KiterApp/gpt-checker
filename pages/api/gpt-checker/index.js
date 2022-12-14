@@ -1,7 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req, res) => {
 
   try {
     console.log(req?.body?.text, 'running', process.env.PYQ_API_KEY)
