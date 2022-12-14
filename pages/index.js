@@ -1,83 +1,14 @@
 import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import PromptForm from "components/prompt-form";
+import PromptForm from "../components/prompt-form";
 import { XCircle as StartOverIcon } from "lucide-react";
 import { Code as CodeIcon } from "lucide-react";
 import { MagnifyingGlassIcon, HeartFilledIcon } from "@radix-ui/react-icons";
-import Cookies from "js-cookie";
-import axios from "axios";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export default function Home() {
-  const [predictions, setPredictions] = useState([]);
-  const [error, setError] = useState(null);
-  const [maskImage, setMaskImage] = useState(null);
-  const [userUploadedImage, setUserUploadedImage] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("submitting");
-    setLoading(true);
-
-    const prevPrediction = predictions[predictions.length - 1];
-    const prevPredictionOutput = prevPrediction?.output
-      ? prevPrediction.output[prevPrediction.output.length - 1]
-      : null;
-
-    const body = {
-      prompt: e.target.prompt.value,
-      version: e.target.version.value
-    };
-
-    const response = await fetch("/api/predictions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    const prediction = await response.json();
-
-    if (response.status !== 201) {
-      setError(prediction.detail);
-      return;
-    }
-    setPredictions(predictions.concat([prediction]));
-
-    while (
-      prediction.status !== "succeeded" &&
-      prediction.status !== "failed"
-    ) {
-      await sleep(1000);
-      const response = await fetch("/api/predictions/" + prediction.id);
-      prediction = await response.json();
-      if (response.status !== 200) {
-        setError(prediction.detail);
-        return;
-      }
-      setPredictions(predictions.concat([prediction]));
-
-      if (prediction.status === "succeeded") {
-        setUserUploadedImage(null);
-      }
-    }
-  };
-
-  const startOver = async (e) => {
-    e.preventDefault();
-    setLoading(false);
-    setPredictions([]);
-    setError(null);
-    setMaskImage(null);
-    setUserUploadedImage(null);
-  };
-
-  const imageAvailable = predictions[predictions.length - 1]?.output ? true : false;
 
   return (
     <div>
@@ -86,37 +17,10 @@ export default function Home() {
         <meta name="description" content="Detect if text is likely written by a GPT model like GPT-3 or chatGPT to detect if text is AI generated." />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-
-      <main className="container mx-auto p-5">
-        {error && <div>{error}</div>}
-
-        <div className="max-w-[512px] mx-auto py-10">
-          <h1
-            className="text-center flex text-2xl text-orange-500"
-          >
-            <MagnifyingGlassIcon
-              className="icon text-2xl mt-1 text-orange-500"
-              height={15}
-              width={15}
-            />
-            GPT Detector
-          </h1>
-          <PromptForm
-            onSubmit={handleSubmit}
-            modelLoaded={predictions.length > 0}
-          />
+          <PromptForm />
 
           <div className="text-center text-2xl">
-            {((predictions.length > 0 &&
-              predictions[predictions.length - 1].output) ||
-              maskImage ||
-              userUploadedImage) && (
-              <button className="lil-button" onClick={startOver}>
-                <StartOverIcon className="icon text-2xl" />
-                Start over
-              </button>
-            )}
-            <p className="lil-button py-10 pt-20">
+            <p className="lil-button">
             <Link href="https://promptloop.com">
               <a
                 target="_blank"
@@ -126,7 +30,7 @@ export default function Home() {
                 Made by the Promptloop team
               </a>
             </Link>
-            <Link href="https://promptloop.com">
+            <Link href="https://www.pyqai.com/">
               <a
                 className="ml-2"
                 target="_blank"
@@ -137,21 +41,7 @@ export default function Home() {
               </a>
             </Link>
             </p>
-          </div>
         </div>
-        {/* Loading  */}
-      </main>
     </div>
   );
-}
-
-function readAsDataURL(file) {
-  return new Promise((resolve, reject) => {
-    const fr = new FileReader();
-    fr.onerror = reject;
-    fr.onload = () => {
-      resolve(fr.result);
-    };
-    fr.readAsDataURL(file);
-  });
 }

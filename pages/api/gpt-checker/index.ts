@@ -4,16 +4,19 @@ import axios from 'axios';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
-    console.log(req?.body?.text, 'runing')
+    console.log(req?.body?.text, 'running')
 
     var data = JSON.stringify({
-      "inputs": `${req?.body?.text}`,
+      "input_sequence": `${req?.body?.text}`,
+      "model": 139,
+      "version": 388,
+      "account": 13
     });
 
     const response = await fetch(
-      "https://api-inference.huggingface.co/models/roberta-base-openai-detector",
+      "https://predict.pyqai.com/",
       {
-        headers: { Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}` },
+        headers: { Authorization: `Bearer ${process.env.PYQ_API_KEY}` },
         method: "POST",
         body: JSON.stringify(data),
       }
