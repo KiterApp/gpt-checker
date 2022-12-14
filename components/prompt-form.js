@@ -1,59 +1,81 @@
-import { useState } from "react";
-import Cookies from "js-cookie";
+import { useState } from 'react'
+import axios from 'axios'
+import Head from 'next/head'
 
-const samplePrompts = [
-  "Mad Max, Oscar nominated, intense, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, 8k",
-  "Disney Pixar, Award winning, intense, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, 8k",
-  "mdjrny-v4 style portrait of Shaman, Indian Headdress, wild face paint, intricate, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by artgerm and greg rutkowski and alphonse mucha, 8k",
-  "mdjrny-v4 style portrait, triumph, highly detailed, digital painting, artstation, hyper-detail, smooth, sharp focus, illustration, oil painting by JMW Turner, 8k",
-];
-import sample from "lodash/sample";
 
 export default function PromptForm(props) {
-  const [prompt] = useState(sample(samplePrompts));
-  const [modelCode, setModelCode] = useState(null);
+  const [result, setResult] = useState('')
+  const [checkText, setCheckText] = useState('')
+  const [resultEmojiArray, setResultEmojiArray] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [range, setRange] = useState('low')
 
-  const modelCookie = Cookies.get("model");
+
+  const handleSubmit = async (e) => {
+    console.log('submit', e.target.prompt.value)
+    setLoading(true)
+    e.preventDefault()
+    // fetch to gpt-checker api
+    const res = await axios('/api/gpt-checker', {
+      method: 'POST',
+      data: {
+        text: e.target.prompt.value,
+      }
+    })
+
+    const result = await res.data
+    const score = result[0][0]?.score
+
+    const percentage = Math.round(score * 100).toFixed(0)
+    // create an array 1/10 depending on the size of the percentage
+    const resultEmojiArray = []
+    for (let i = 0; i < percentage / 10; i++) {
+      resultEmojiArray.push('🤖')
+    }
+    const range = percentage < 60 ? 'low' : percentage < 80 ? 'medium' : 'high'
+    setRange(range)
+    setLoading(false)
+    setResultEmojiArray(resultEmojiArray)
+
+    setResult(percentage)
+  }
 
   return (
-    <form
-      onSubmit={props.onSubmit}
-      className="py-5 animate-in fade-in duration-700"
-    >
-      <div className="flex max-w-[512px] grid grid-cols-1 gap-5">
-        <div>
-        <p
-          className="text-sm text-gray-500 pb-2"
-        >
-          Description (prompt) for the image, include all the detail like these examples for best results:
-        </p>
-        <textarea
-          type="text"
-          defaultValue={prompt}
-          name="prompt"
-          placeholder="Enter a prompt..."
-          className="block w-full flex-grow rounded-l-md p-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          // three lines
-          rows="5"
-        />
+    <>
+      <Head>
+        <title>Check if text is GPT generated</title>
+        <meta name="description" content="Detect if text is likely written by a GPT model like GPT-3 or chatGPT to detect if text is AI generated." />
+      </Head>
+      <form
+        onSubmit={handleSubmit}
+        className="py-5 animate-in fade-in duration-700"
+      >
+        <div className="flex max-w-[512px] sm:max-w-7xl grid grid-cols-1 gap-5">
+          <div>
+          <p
+            className="text-sm text-gray-500 pb-2"
+          >
+            Detect if text is likely written by a GPT model like GPT-3 or chatGPT to detect if text is AI generated.
+          </p>
+          <textarea
+            type="text"
+            defaultValue=''
+            name="prompt"
+            placeholder="Enter a prompt..."
+            className="block w-full flex-grow rounded-l-md p-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            // three lines
+            rows="10"
+          />
+          </div>
+
+          <button
+            className="bg-black text-white rounded-md py-2 text-small inline-block px-3 flex-none"
+            type="submit"
+          >
+            Run Check
+          </button>
         </div>
-
-        <input
-          type="text"
-          defaultValue={modelCookie || modelCode}
-          onChange={(e) => setModelCode(e.target.value)}
-          name="version"
-          placeholder="Enter Model Code..."
-          className="block w-full flex-grow rounded-l-md"
-        />
-
-        <button
-          className="bg-black text-white rounded-md py-2 text-small inline-block px-3 flex-none"
-          type="submit"
-        >
-          {props.modelLoaded ? "Generate" : "Load Model (can take 2-3 minutes)"}
-        </button>
-      </div>
-    </form>
+      </form>
+    </>
   );
 }
