@@ -4,7 +4,9 @@ import axios from 'axios';
 const handler = async (req, res) => {
 
   try {
-    console.log(req?.body?.text, 'running', process.env.PYQ_API_KEY)
+    console.log(req?.body?.text.length, 'characters running')
+
+    const startTime = Date.now();
 
     var data = JSON.stringify({
       "input_sequence": `${req?.body?.text}`,
@@ -28,7 +30,8 @@ const handler = async (req, res) => {
     console.log(await response, data)
 
     const result = await response.json();
-    console.log(result, 'result')
+    const endTime = Date.now();
+    console.log('time', endTime - startTime)
     
 
     return res?.status(200).json(result)
