@@ -4,7 +4,7 @@ import axios from 'axios';
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
-    console.log(req?.body?.text, 'running')
+    console.log(req?.body?.text, 'running', process.env.PYQ_API_KEY)
 
     var data = JSON.stringify({
       "input_sequence": `${req?.body?.text}`,
@@ -16,11 +16,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const response = await fetch(
       "https://predict.pyqai.com/",
       {
-        headers: { Authorization: `Bearer ${process.env.PYQ_API_KEY}` },
+        headers: {
+          Authorization: `Bearer ${process.env.PYQ_API_KEY}`,
+          "Content-Type": "application/json",
+        },
         method: "POST",
-        body: JSON.stringify(data),
+        body: data,
       }
     );
+
+    console.log(await response, data)
 
     const result = await response.json();
     console.log(result, 'result')

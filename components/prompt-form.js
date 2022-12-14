@@ -25,7 +25,8 @@ export default function PromptForm(props) {
     })
 
     const result = await res.data
-    const score = result[0][0]?.score
+    console.log('result', result.response.response)
+    const score = result?.response?.response['LABEL_1']
 
     const percentage = Math.round(score * 100).toFixed(0)
     // create an array 1/10 depending on the size of the percentage
