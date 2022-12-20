@@ -11,7 +11,7 @@ const handler = async (req, res) => {
     var data = JSON.stringify({
       "input_sequence": `${req?.body?.text}`,
       "model": 139,
-      "version": 388,
+      "version": 390,
       "account": 13
     });
 
