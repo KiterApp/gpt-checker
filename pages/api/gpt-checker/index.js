@@ -27,14 +27,15 @@ const handler = async (req, res) => {
       }
     );
 
-    console.log(await response, data)
-
     const result = await response.json();
     const endTime = Date.now();
-    console.log('time', endTime - startTime)
+    console.log(response.status, result, 'time', endTime - startTime)
     
-
-    return res?.status(200).json(result)
+    if (response.status === 200) {
+      return res?.status(200).json(result)
+    } else {
+      return res?.status(200).json('ERROR')
+    }
 
   } catch(error) {
     return res.status(200).json('ERROR')

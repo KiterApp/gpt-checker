@@ -10,10 +10,14 @@ export default function PromptForm(props) {
   const [resultEmojiArray, setResultEmojiArray] = useState([])
   const [loading, setLoading] = useState(false)
   const [range, setRange] = useState('low')
+  const [error, setError] = useState('')
 
 
   const handleSubmit = async (e) => {
-    console.log('submit', e.target.prompt.value)
+    setResult('')
+    setResultEmojiArray([])
+    setError('')
+    setRange('')
     setLoading(true)
     e.preventDefault()
     // fetch to gpt-checker api
@@ -25,10 +29,17 @@ export default function PromptForm(props) {
     })
 
     const result = await res.data
+    console.log('result', result)
+
+    if (result === 'ERROR') {
+      setLoading(false)
+      setError('ERROR')
+      return
+    }
     console.log('result', result.response.response)
     const score = result?.response?.response['LABEL_1']
 
-    const percentage = Math.round(score * 100).toFixed(0)
+    const percentage = Math.max(1,Math.round(score * 100).toFixed(0))
     // create an array 1/10 depending on the size of the percentage
     const resultEmojiArray = []
     for (let i = 0; i < percentage / 10; i++) {
@@ -56,6 +67,7 @@ export default function PromptForm(props) {
               width={25}
             />
             GPT Detector
+            {error}
           </h1>
           <form
             onSubmit={handleSubmit}
@@ -80,7 +92,7 @@ export default function PromptForm(props) {
             </div>
             <div className="flex flex-row justify-start py-5 text-xl text-gray-500">
               {loading && 'Loading...'}
-              {!loading && resultEmojiArray.length > 0 && (
+              {!loading && resultEmojiArray.length > 0 ? (
                 <>
                 <p className='text-2xl px-10'>
                 {resultEmojiArray.length > 0 && 'Likelihood: '}
@@ -92,6 +104,10 @@ export default function PromptForm(props) {
                 {result}
                 {'  %'}
                 </p>
+                </>
+              ) : (
+                <>
+                {error}
                 </>
               )}
             </div>
