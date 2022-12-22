@@ -37,7 +37,7 @@ export default function PromptForm(props) {
       return
     }
     console.log('result', result.response.response)
-    const score = result?.response?.response['LABEL_1']
+    const score = result?.response?.response['LABEL_0']
 
     const percentage = Math.max(1,Math.round(score * 100).toFixed(0))
     // create an array 1/10 depending on the size of the percentage
