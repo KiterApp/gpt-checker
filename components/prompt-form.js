@@ -45,7 +45,7 @@ export default function PromptForm(props) {
     for (let i = 0; i < percentage / 10; i++) {
       resultEmojiArray.push('🤖')
     }
-    const range = percentage < 60 ? 'low' : percentage < 80 ? 'medium' : 'high'
+    const range = percentage < 60 ? 'Low' : percentage < 80 ? 'Medium' : 'High'
     setRange(range)
     setLoading(false)
     setResultEmojiArray(resultEmojiArray)
@@ -94,13 +94,14 @@ export default function PromptForm(props) {
               {loading && 'Loading...'}
               {!loading && resultEmojiArray.length > 0 ? (
                 <>
-                <p className='text-2xl px-10'>
+                <p className='text-2xl'>
                 {resultEmojiArray.length > 0 && 'Likelihood: '}
                 {range}
+                {'   '}
                 {resultEmojiArray}
                 </p>
                 <p className='text-2xl'>
-                {'  '}
+                {'   '}
                 {result}
                 {'  %'}
                 </p>

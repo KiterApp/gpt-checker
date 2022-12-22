@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>GPT Detector</title>
-        <meta name="description" content="Detect if text is likely written by a GPT model like GPT-3 or chatGPT to detect if text is AI generated." />
+        <title>GPT Detector | Free tool to tell if text is written by AI like GPT-3</title>
+        <meta name="description" content="Detect if text is likely written by a GPT model like GPT-3 or chatGPT or AI writing tool. Free tool to detect if text is AI generated." />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
           <PromptForm />
