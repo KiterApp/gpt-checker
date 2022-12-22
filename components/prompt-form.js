@@ -57,12 +57,12 @@ export default function PromptForm(props) {
     <>
       {/* Container */}
       <div className="container w-full mx-auto p-5 pt-20 flex flex-col">
-        <div className="max-w-[512px] sm:max-w-7xl mx-auto py-5 flex flex-col">
+        <div className="max-w-[512px] sm:max-w-7xl mx-auto pb-5 flex flex-col">
           <h1
-            className="text-center flex text-2xl text-orange-500"
+            className="text-center flex text-4xl text-orange-500"
           >
             <MagnifyingGlassIcon
-              className="icon text-2xl mt-1 text-orange-500 mr-3"
+              className="icon text-4xl mt-1 text-orange-500 mr-3"
               height={25}
               width={25}
             />
