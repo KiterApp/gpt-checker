@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Head from 'next/head'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
@@ -11,6 +11,7 @@ export default function PromptForm(props) {
   const [loading, setLoading] = useState(false)
   const [range, setRange] = useState('low')
   const [error, setError] = useState('')
+  const [input, setInput] = useState('')
 
 
   const handleSubmit = async (e) => {
@@ -67,7 +68,6 @@ export default function PromptForm(props) {
               width={25}
             />
             GPT Detector
-            {error}
           </h1>
           <form
             onSubmit={handleSubmit}
@@ -86,6 +86,7 @@ export default function PromptForm(props) {
                 placeholder="Paste text that you want to check..."
                 className="block w-full flex-grow rounded-l-md p-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 // three lines
+                onChange={(e) => setInput(e.target.value)}
                 rows={15}
               />
               </div>
@@ -111,6 +112,11 @@ export default function PromptForm(props) {
                 {error}
                 </>
               )}
+            </div>
+            {/* Warning helper text */}
+            <div className="flex flex-row justify-start pb-2 text-orange-500">
+              {input.length > 0 && input.length < 50 && 'Text is too short. Try adding more text for more accurate results.'}
+              {input.length > 1500 && 'The tool can only process up to 1500 characters. Try removing some text.'}
             </div>
             <button
               className="text-white w-full bg-blue-400 text-center cursor-pointer hover:bg-blue-500 rounded-md py-2 text-small inline-block px-3 flex-none"
