@@ -36,6 +36,7 @@ export default function PromptForm(props) {
 
 
   const handleSubmit = async (e) => {
+    setValidated(false)
     setResult('')
     setResultEmojiArray([])
     setError('')
