@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+
 // Initialize the JS client
 import { createClient } from '@supabase/supabase-js'
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY)
@@ -27,8 +27,8 @@ const logSupabase = async (input_string, user_validation, result) => {
 
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+  req,
+  res
 ) {
 
   try {

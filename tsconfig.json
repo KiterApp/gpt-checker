@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/api/gpt-checker/index.js"
-  ],
+, "pages/api/gpt-checker/response.js"  ],
   "exclude": [
     "node_modules"
   ]
