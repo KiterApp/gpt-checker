@@ -18,7 +18,7 @@ const logSupabase = async (input_string, user_validation, result) => {
         }
       ])
     const endPG = Date.now()
-    console.log('PG time', endPG - startPG, insertData)
+    console.log('PG time', endPG - startPG, insertData, insertError)
   } catch (error) {
     console.log(error, 'error')
   }
