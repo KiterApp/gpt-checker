@@ -21,25 +21,23 @@ export default function Home() {
 
           <div className="text-center text-2xl">
             <p className="lil-button">
-            <Link href="https://promptloop.com">
               <a
                 target="_blank"
                 rel="noopener noreferrer"
+                href="https://promptloop.com"
               >
                 <HeartFilledIcon className="icon" />
                 Made by the Promptloop team
               </a>
-            </Link>
-            <Link href="https://www.pyqai.com/">
               <a
                 className="ml-2"
                 target="_blank"
                 rel="noopener noreferrer"
+                href="https://www.pyqai.com/"
               >
                 <CodeIcon className="icon" />
                 and Powered by Pyq AI
               </a>
-            </Link>
             </p>
         </div>
     </div>
