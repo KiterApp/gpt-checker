@@ -19,7 +19,6 @@ export default function PromptForm(props) {
 
   const handleValidation = (value) => {
     // post to response endpoint
-    console.log('e.target.value', value)
     const data = {
       input_string: input || '',
       user_validation: value || false,
