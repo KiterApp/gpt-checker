@@ -33,6 +33,8 @@ export default async function handler(
 
   try {
 
+    console.log('logging response')
+
     const body = req.body
 
     const input_string = await body?.input_string
