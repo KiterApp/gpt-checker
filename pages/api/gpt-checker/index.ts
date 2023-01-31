@@ -6,6 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  return res.status(200).json('OFFLINE')
 
   try {
     console.log(req?.body?.text.length, 'characters running')
