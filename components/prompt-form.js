@@ -12,7 +12,6 @@ export default function PromptForm(props) {
   const [range, setRange] = useState('low')
   const [error, setError] = useState('')
 
-
   const handleSubmit = async (e) => {
     setResult('')
     setResultEmojiArray([])

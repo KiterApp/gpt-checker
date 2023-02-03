@@ -11,15 +11,15 @@ const handler = async (req, res) => {
     var data = JSON.stringify({
       "input_sequence": `${req?.body?.text}`,
       "model": 139,
-      "version": 390,
-      "account": 13
+      "version": 440,
+      "account": -1
     });
 
     const response = await fetch(
-      "https://predict.pyqai.com/",
+      "https://public-zoo-server-fgkue36c2q-uc.a.run.app/",
       {
         headers: {
-          Authorization: `Bearer ${process.env.PYQ_API_KEY}`,
+          Authorization: `mung`,
           "Content-Type": "application/json",
         },
         method: "POST",
