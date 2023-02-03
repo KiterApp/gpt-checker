@@ -19,7 +19,7 @@ const handler = async (req, res) => {
       "https://public-zoo-server-fgkue36c2q-uc.a.run.app/",
       {
         headers: {
-          Authorization: `mung`,
+          Authorization: "mung",
           "Content-Type": "application/json",
         },
         method: "POST",

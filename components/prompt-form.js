@@ -19,13 +19,18 @@ export default function PromptForm(props) {
     setRange('')
     setLoading(true)
     e.preventDefault()
+
+    let requestContents = { "model": 139, "version": 440, "account": -1, "input_sequence" : e.target.prompt.value};
+  
+      let axiosConfig = {
+        headers: {
+            'Authorization': "mung",
+            'Content-Type': 'application/json'
+        }
+    };
+
     // fetch to gpt-checker api
-    const res = await axios('/api/gpt-checker', {
-      method: 'POST',
-      data: {
-        text: e.target.prompt.value,
-      }
-    })
+    const res = await axios.post('https://public-zoo-server-fgkue36c2q-uc.a.run.app/', requestContents, axiosConfig);
 
     const result = await res.data
     console.log('result', result)
