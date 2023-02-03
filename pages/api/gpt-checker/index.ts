@@ -1,7 +1,12 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import axios from 'axios';
+import type { NextApiRequest, NextApiResponse } from "next";
 
-const handler = async (req, res) => {
+
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  return res.status(200).json('OFFLINE')
 
   try {
     console.log(req?.body?.text.length, 'characters running')
@@ -28,10 +33,18 @@ const handler = async (req, res) => {
     );
 
     const result = await response.json();
+
+    // logSupabase(req?.body?.text, req?.body?.user_validation, result)
     const endTime = Date.now();
-    console.log(response.status, result, 'time', endTime - startTime)
+    
+
+
+    
+
+
     
     if (response.status === 200) {
+      console.log('API time', endTime - startTime, result)
       return res?.status(200).json(result)
     } else {
       return res?.status(200).json('ERROR')
@@ -42,5 +55,3 @@ const handler = async (req, res) => {
   }
 
 }
-
-export default handler;
