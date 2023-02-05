@@ -106,11 +106,6 @@ export default function PromptForm(props) {
               >
                 Detect whether text is likely written by a GPT model like GPT-3 or chatGPT. Paste text below to run it against the model.
               </h3>
-              <h3
-                className="text-lg text-gray-500 py-5"
-              >
-                We are in the process of upgrading out models - come back again soon!
-              </h3>
               <textarea
                 defaultValue=''
                 name="prompt"
