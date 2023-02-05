@@ -111,7 +111,7 @@ export default function PromptForm(props) {
               >
                 We are in the process of upgrading out models - come back again soon!
               </h3>
-              {/* <textarea
+              <textarea
                 defaultValue=''
                 name="prompt"
                 placeholder="Paste text that you want to check..."
@@ -119,11 +119,11 @@ export default function PromptForm(props) {
                 // three lines
                 onChange={(e) => setInput(e.target.value)}
                 rows={15}
-              /> */}
+              />
               </div>
             </div>
             {/* Warning helper text */}
-            {/* <div className="flex flex-row justify-start pb-2 text-orange-500">
+            <div className="flex flex-row justify-start pb-2 text-orange-500">
               {input.length > 0 && input.length < 50 && 'Text is too short. Try adding more text for more accurate results.'}
               {input.length > 1500 && 'The tool can only process up to 1500 characters. Try removing some text.'}
             </div>
@@ -132,10 +132,10 @@ export default function PromptForm(props) {
               type="submit"
             >
               Run Check
-            </button> */}
+            </button>
           </form>
           <div className='sm:grid sm:grid-cols-2 sm:gap-4 sm:items-start sm:pt-5'>
-              {/* <div className="flex flex-row justify-start py-2 text-xl text-gray-500">
+              <div className="flex flex-row justify-start py-2 text-xl text-gray-500">
                 {loading && 'Loading...'}
                 {!loading && resultEmojiArray.length > 0 ? (
                   <>
@@ -156,9 +156,9 @@ export default function PromptForm(props) {
                   {error}
                   </>
                 )}
-              </div> */}
+              </div>
               {/* Buttons */}
-              {/* {!loading && resultEmojiArray.length > 0 && (
+              {!loading && resultEmojiArray.length > 0 && (
                 <div className='flex flex-row md:justify-end py-2 pb-2 text-xl text-gray-500 space-x-5'>
                   {!validated ? (
                     <>
@@ -182,7 +182,7 @@ export default function PromptForm(props) {
                   )}
 
                 </div>
-              )} */}
+              )}
             </div>
         </div>
         {/* Loading  */}
