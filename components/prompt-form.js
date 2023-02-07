@@ -3,7 +3,8 @@ import axios from 'axios'
 import Head from 'next/head'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import { useDebounce } from 'use-debounce';
-
+import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function PromptForm(props) {
   const [result, setResult] = useState('')
@@ -15,7 +16,10 @@ export default function PromptForm(props) {
   const [input, setInput] = useState('')
   const [validated, setValidated] = useState(false)
   const debouncedQuery = useDebounce(input, 500);
+  const [numClicked, setNumClicked] = useState(0)
+  const { user, error2, isLoading } = useUser();
 
+  const clickTimer = 3;
 
   const handleValidation = (value) => {
     // post to response endpoint
@@ -43,8 +47,17 @@ export default function PromptForm(props) {
     setLoading(true)
     e.preventDefault()
 
+    setNumClicked(numClicked + 1)
+
+    if(numClicked > clickTimer)
+    {
+      router.push('/api/auth/login');
+      console.log("Trying to push to router");
+      return;
+    }
+
     let requestContents = { "model": 139, "version": 440, "account": -1, "input_sequence" : e.target.prompt.value};
-  
+
       let axiosConfig = {
         headers: {
             'Authorization': "mung",
@@ -122,12 +135,16 @@ export default function PromptForm(props) {
               {input.length > 0 && input.length < 50 && 'Text is too short. Try adding more text for more accurate results.'}
               {input.length > 1500 && 'The tool can only process up to 1500 characters. Try removing some text.'}
             </div>
-            <button
-              className="mt-2 text-white w-full bg-blue-400 text-center cursor-pointer hover:bg-blue-500 rounded-md py-2 text-small inline-block px-3 flex-none"
-              type="submit"
+            { (numClicked >= clickTimer) && !user ? (<Link href="/api/signup">
+   <button className="text-white w-full bg-blue-400 text-center cursor-pointer hover:bg-blue-500 rounded-md py-2 text-small inline-block px-3 flex-none"
             >
-              Run Check
-            </button>
+            Run Check
+   </button>
+</Link>) : (<button
+            className="text-white w-full bg-blue-400 text-center cursor-pointer hover:bg-blue-500 rounded-md py-2 text-small inline-block px-3 flex-none"
+            type="submit">
+            Run Check
+          </button>)}
           </form>
           <div className='sm:grid sm:grid-cols-2 sm:gap-4 sm:items-start sm:pt-5'>
               <div className="flex flex-row justify-start py-2 text-xl text-gray-500">
