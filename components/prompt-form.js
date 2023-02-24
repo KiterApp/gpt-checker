@@ -106,7 +106,7 @@ export default function PromptForm(props) {
               height={25}
               width={25}
             />
-            GPT Detector
+            GPT Detector 
           </h1>
           <form
             onSubmit={handleSubmit}
