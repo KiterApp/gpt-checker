@@ -101,6 +101,7 @@ export default function PromptForm(props) {
         return;
       }
     }
+    //
 
     try {
       if(res.status == "500")
